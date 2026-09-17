@@ -1,0 +1,173 @@
+# HIẾN PHÁP THẾ GIỚI
+# Máy đọc được. Mọi đề xuất của agent bị kiểm tra ngược lại file này tại Agent Gateway.
+# Agent CHỈ ĐỌC file này. Sửa: PR + duyệt của người + ADR.
+# Xem docs/22-world-kernel.md và docs/23-agent-platform.md
+
+version: 1
+updated: "2026-01-01"
+
+# ---------------------------------------------------------------------------
+# BẤT BIẾN — vi phạm là từ chối đề xuất, không thương lượng
+# ---------------------------------------------------------------------------
+invariants:
+
+  - id: INV-01
+    name: "Không đo bằng đáp án cuối cùng"
+    rule: "challenge.evidence MUST contain (process_trace OR defense_session)"
+    why: "Sản phẩm cuối bây giờ ai cũng có thể có. Chỉ quá trình mới phân biệt được."
+    severity: reject
+
+  - id: INV-02
+    name: "AI một mình không được qua"
+    rule: "challenge.ai_solo_pass_rate < 0.25"
+    why: "Ngưỡng mà mô hình tự qua được thì không đo năng lực người nữa."
+    check: "agent phải tự chạy thử với mô hình mạnh nhất trước khi nộp đề xuất"
+    severity: reject
+    recheck_every: "90d"
+
+  - id: INV-03
+    name: "Kỹ năng phải quan sát được"
+    rule: "atom.mastery_signal MUST be an observable behavior"
+    why: "Atom nghe hay mà không quan sát được thì không chấm được, không dạy được."
+    severity: reject
+
+  - id: INV-04
+    name: "Không ngõ cụt"
+    rule: "every atom MUST have >= 1 inbound path from an entry atom"
+    severity: reject
+
+  - id: INV-05
+    name: "Không chu trình tiên quyết"
+    rule: "genome.graph MUST be acyclic"
+    severity: reject
+
+  - id: INV-06
+    name: "Chặn trùng lặp"
+    rule: "cosine(proposal.embedding, any_existing.embedding) < 0.88"
+    why: "Điều luật quan trọng nhất chống trôi dạt. Không có nó, 3 tháng sau có 400 biến thể của 30 ý tưởng."
+    severity: reject
+    on_violation: "chuyển thành đề xuất SỬA cái đã có, không tạo mới"
+
+  - id: INV-07
+    name: "Lore phải có nguồn hoặc nhãn hư cấu"
+    rule: "lore.sources non-empty OR lore.label == 'hư cấu'"
+    severity: reject
+
+  - id: INV-08
+    name: "Vùng cấm của agent"
+    rule: "agent.write_scope MUST EXCLUDE [ledger, verdict, identity, process_trace]"
+    why: "Điều lệ §25. Cưỡng chế bằng CI, không chỉ bằng lời hứa."
+    severity: reject_and_alert
+
+  - id: INV-09
+    name: "An toàn trẻ vị thành niên"
+    rule: "challenge.requires_irl_meeting == true ⇒ challenge.minor_safe == false"
+    severity: reject
+
+  - id: INV-10
+    name: "Rubric công khai trước khi nhập môn"
+    rule: "challenge.rubric.visibility == 'public_before_initiation'"
+    why: "Điều lệ §6. Không có tiêu chí ẩn."
+    severity: reject
+
+  - id: INV-11
+    name: "Chưa đạt luôn có lối đi tiếp"
+    rule: "challenge.on_fail.next_step MUST reference an existing challenge or atom"
+    why: "Điều lệ §4. 'Chưa đạt' không bao giờ là ngõ cụt."
+    severity: reject
+
+  - id: INV-12
+    name: "Xuất xứ đầy đủ"
+    rule: "asset.rights.license != 'unclear'"
+    severity: quarantine
+
+  - id: INV-13
+    name: "Địa hình sinh từ dữ liệu"
+    rule: "terrain MUST be a pure function of (genome, learner_telemetry, seed)"
+    why: "Địa hình không được là ý kiến của một mô hình."
+    severity: reject
+
+  - id: INV-14
+    name: "Không đặc điểm cá nhân trong rubric"
+    rule: "rubric MUST NOT reference age, gender, origin, school, appearance, accent"
+    why: "Điều lệ §14."
+    severity: reject_and_alert
+
+# ---------------------------------------------------------------------------
+# HẠN NGẠCH — siết dần theo giai đoạn. Đây là van chính bạn nắm.
+# ---------------------------------------------------------------------------
+budgets:
+  global:
+    new_challenges_per_week: 40
+    new_atoms_per_week: 15
+    new_lore_entries_per_week: 25
+    max_live_challenges_per_atom: 6
+    max_open_proposals: 200
+  per_stage:          # ghi đè theo giai đoạn dự án
+    G1: { new_challenges_per_week: 10, new_atoms_per_week: 5 }
+    G2: { new_challenges_per_week: 25 }
+    G4: { new_challenges_per_week: 40 }
+    G5: { new_challenges_per_week: 60 }
+  cost:
+    usd_per_week_total: 400
+    alert_at_pct: 70
+    hard_stop_at_pct: 100
+    track: "cost_per_accepted_proposal_alive_30d"   # chỉ số phải giảm theo thời gian
+
+# ---------------------------------------------------------------------------
+# VÙNG TRƯỞNG THÀNH — quyền tự trị tỉ lệ nghịch với mật độ người
+# ---------------------------------------------------------------------------
+maturity_zones:
+  - id: frontier
+    condition: "traversals < 20"
+    agent_autonomy: "propose_and_publish"
+    human_review: "weekly_digest_only"
+    map_display: "sương mù dày + nhãn 'vùng mới, do máy dựng, chưa ai kiểm chứng'"
+  - id: settled
+    condition: "20 <= traversals <= 200"
+    agent_autonomy: "propose_only"
+    human_review: "một gác cổng của vùng phải duyệt"
+    map_display: "sương mỏng"
+  - id: canon
+    condition: "traversals > 200 AND gatekeeper_agreement >= 0.8"
+    agent_autonomy: "suggest_only"      # không tự động gì cả
+    human_review: "hội đồng + phiên bản hoá + nhật ký như sửa luật"
+    map_display: "rõ nét"
+
+# ---------------------------------------------------------------------------
+# UY TÍN AGENT — agent phải kiếm lấy quyền tự trị, giống hệt người học
+# ---------------------------------------------------------------------------
+agent_reputation:
+  formula: "0.5*acceptance_rate + 0.3*survival_30d + 0.2*learner_value - 0.4*redteam_break_rate"
+  effects:
+    - "rep >= 0.75 ⇒ hạn ngạch x1.5, được tự phát hành ở frontier"
+    - "rep < 0.35  ⇒ hạn ngạch x0.5, mọi đề xuất phải qua Arbiter"
+    - "rep < 0.15 trong 3 tuần liên tiếp ⇒ tạm ngưng agent, báo admin"
+
+# ---------------------------------------------------------------------------
+# VÒNG ĐỜI THỬ THÁCH — quy tắc chết
+# ---------------------------------------------------------------------------
+challenge_lifecycle:
+  states: [seed, trial, live, declining, dormant, memorial]
+  decline_triggers:
+    - { signal: ai_solo_pass_rate,     op: ">",  value: 0.25, min_samples: 1  }
+    - { signal: pass_rate,             op: ">",  value: 0.90, min_samples: 30 }
+    - { signal: pass_rate,             op: "<",  value: 0.10, min_samples: 20 }
+    - { signal: gatekeeper_agreement,  op: "<",  value: 0.60, min_samples: 15 }
+    - { signal: abandon_rate,          op: ">",  value: 0.60, min_samples: 20 }
+    - { signal: days_since_last_entry, op: ">",  value: 120 }
+  rules:
+    - "declining ⇒ ngừng nhận người mới, người đang làm dở được đi hết"
+    - "memorial ⇒ ngưỡng nghỉ hẳn NHƯNG ghi danh của người đã qua tồn tại vĩnh viễn"
+    - "mọi cái chết phải ghi lý do; kho lý do chết là đầu vào bắt buộc cho agent sinh lứa sau"
+
+# ---------------------------------------------------------------------------
+# CÔNG TẮC NGẮT
+# ---------------------------------------------------------------------------
+kill_switches:
+  scopes:
+    - single_agent
+    - single_provider
+    - all_generation           # dừng toàn bộ sinh nội dung, ứng dụng vẫn chạy bình thường
+    - adversary_mode           # tắt riêng chế độ AI đối kháng
+  requirement: "ngắt phải có hiệu lực < 60s và KHÔNG làm gián đoạn người học đang làm dở"
