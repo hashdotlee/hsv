@@ -19,6 +19,11 @@
 | **Chữ ký lỗi** | `ErrorSignature` | Kiểu sai đặc trưng của một người. Hai người "giống nhau" khi họ **sai giống nhau**, không phải khi họ cùng tuổi hay cùng ngành. |
 | **Suy giảm** | `decay` | Năng lực tụt theo thời gian thật nếu không dùng. Là sự thật về con người, không phải cơ chế ép quay lại. |
 | **Mức AI thay thế** | `aiSubstitutability` | 0–1. Mức độ một mô hình mạnh làm thay được atom này. Đo lại mỗi quý. |
+| **Biến ẩn** | `hidden_variables` | Thứ không nằm trong đề bài mà người học phải tự phát hiện. Mỗi ngưỡng cửa phải có ít nhất một. |
+| **Thang gợi ý** | `hints.ladder` | Các gợi ý theo điều kiện kích hoạt. Xin gợi ý **không bị phạt**, nhưng được ghi vào vết. |
+| **Độ trung thực** | `fidelity` | `SIMULATED` · `AUGMENTED` · `REAL_STAKES`. Mức độ hậu quả thật của ngưỡng cửa. |
+| **Tỉ lệ AI tự qua** | `ai_solo_pass_rate` | Tỉ lệ mô hình mạnh nhất tự giải được, không có người can thiệp. ≥ 0,25 ⇒ ngưỡng bị loại (INV-02). |
+| **Kho lý do chết** | `deathReasons` | Tập lý do vì sao từng nội dung phải chết. Đầu vào **bắt buộc** cho lứa agent sau — đây là cách dàn agent học. |
 
 ## Con người & vai trò
 
@@ -32,6 +37,11 @@
 | **Ghi danh** | `Inscription` | Tên được khắc công khai vĩnh viễn khi qua ngưỡng. Lấy từ bia đề danh tiến sĩ. **Ngưỡng có thể chết, ghi danh không chết.** |
 | **Hội đồng văn hoá** | `CulturalCouncil` | Nghệ nhân/nhà nghiên cứu có quyền phủ quyết nội dung văn hoá. |
 | **Kháng nghị** | `Appeal` | Quyền phản đối phán quyết trước một gác cổng khác. |
+| **Lần thử** | `Attempt` | Một lượt đi qua một ngưỡng cửa, từ nhập môn tới phán quyết. Đơn vị gắn mọi bằng chứng. |
+| **Phán quyết** | `Verdict` | Kết luận của **người**, luôn kèm lý do viết ra và bước tiếp theo. Máy không bao giờ tạo phán quyết. |
+| **Tiêu chí chấm** | `Rubric` | **Dữ liệu, không phải mã.** Công khai trước khi nhập môn (INV-10). |
+| **Mức thành thạo** | `mastery` | Cặp `(θ, σ)`: ước lượng và bán kính bất định. Không bao giờ hiện θ mà thiếu σ. |
+| **Chấm chéo** | `crossGrading` | Hai gác cổng chấm độc lập. Bắt buộc với ngưỡng vượt hạn mức tiền. |
 | **Ngủ đông** | `Dormancy` | Trạng thái vắng mặt **có phẩm giá**. Không phạt, không khoá. |
 
 ## Thế giới & bản đồ
@@ -60,6 +70,12 @@
 | **Trôi dạt** | `drift` | Thế giới loãng và tự mâu thuẫn dần. **Kẻ thù số một** của kiến trúc sinh tự động. |
 | **AI đối kháng** | `adversary` | Chế độ AI cố tình sai có kiểm soát, để đo năng lực phát hiện máy nói sai. |
 | **Tiền thẩm** | `preAssessment` | AI tóm tắt bằng chứng cho gác cổng. Chỉ đọc, **không điểm số**. |
+| **Vùng trưởng thành** | `maturity_zone` | `frontier` / `settled` / `canon`. Quyết định mức duyệt của người với một đề xuất. |
+| **Uy tín agent** | `agent_reputation` | Điểm tổng hợp từ tỉ lệ chấp nhận, sống 30 ngày, giá trị với người học, trừ tỉ lệ bị Red Team phá. Quyết định hạn ngạch. |
+| **Công tắc ngắt** | `kill_switch` | Dừng một agent / nhà cung cấp / toàn bộ sinh nội dung trong **< 60 giây**, không làm gián đoạn lần thử đang chạy. |
+| **Kho sự kiện** | `EventStore` | Nguồn sự thật duy nhất. Chỉ ghi thêm, có chuỗi băm. |
+| **Bản chiếu** | `Projection` | Dữ liệu suy ra từ sự kiện. Luôn xoá và dựng lại được. |
+| **Lò luyện** | `Crucible` | Môi trường sandbox cách ly có ghi vết, nơi người học làm việc thật. |
 
 ## Tiền
 

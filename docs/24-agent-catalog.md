@@ -79,7 +79,7 @@ Chạy tiền thẩm. Ràng buộc nghiêm ngặt nhất trong cả danh mục:
 
 - Mọi quan sát phải có `evidenceRef` trỏ tới bằng chứng gốc
 - **Không điểm số, không kết luận, không khuyến nghị** (Điều lệ §12)
-- Chỉ đọc; không bao giờ chạm vào vết
+- Chỉ đọc **bản sao đã lọc** của vết, qua Agent Gateway — không thấy vết gốc, không bao giờ ghi (INV-08)
 - Gác cổng ghi lại chỗ không đồng ý → dữ liệu hiệu chỉnh cho `scribe`
 
 ### `curator` — Người coi kho

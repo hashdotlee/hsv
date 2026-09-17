@@ -11,7 +11,7 @@
 | Số ngưỡng hoàn thành như thành tích | Khuyến khích ngưỡng dễ |
 | Tỉ lệ đạt thô của gác cổng | Khuyến khích cho qua |
 | Tổng số người dùng như chỉ số thành công | Không nói gì về giá trị |
-| Bất kỳ xếp hạng toàn cục nào | Vi phạm Điều lệ §5 |
+| Bất kỳ xếp hạng toàn cục nào | Vi phạm Điều lệ §3 |
 
 Không xây bảng điều khiển nào hiện các số này — kể cả "chỉ để tham khảo". Số hiện lên là số sẽ được tối ưu.
 
@@ -147,6 +147,6 @@ hàng quý    kinh tế · độ phủ bản đồ · rà nội dung chính đi�
 
 ## Công khai
 
-Công khai (Điều lệ §10): sổ cái tổng hợp · tỉ lệ đạt theo ngưỡng · tỉ lệ kháng nghị và lật · danh sách nhà tài trợ và số tiền · chi phí dàn agent.
+Công khai (Điều lệ §11): sổ cái tổng hợp · tỉ lệ đạt theo ngưỡng · tỉ lệ kháng nghị và lật · danh sách nhà tài trợ và số tiền · chi phí dàn agent.
 
 Không công khai: dữ liệu cá nhân · vết · phán quyết cá nhân · video · bất kỳ thứ gì cho phép xếp hạng người học với nhau.

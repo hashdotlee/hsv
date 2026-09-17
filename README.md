@@ -72,6 +72,7 @@ Nghề mở màn: **kỹ sư phần mềm / AI** — chính nghề đang bị AI
 - [`docs/44-metrics.md`](docs/44-metrics.md) — Chỉ số: cái nào thật, cái nào dối
 - [`docs/45-risks.md`](docs/45-risks.md) — Sổ rủi ro
 - [`docs/50-contributing.md`](docs/50-contributing.md) — Đóng góp: code, ngưỡng cửa, văn hoá
+- [`docs/51-cli.md`](docs/51-cli.md) — Giao diện dòng lệnh `hsv` (đặc tả)
 - [`docs/52-runbooks.md`](docs/52-runbooks.md) — Quy trình vận hành khi có sự cố
 - [`docs/adr/`](docs/adr/README.md) — Nhật ký quyết định kiến trúc (ADR-0001…0010)
 

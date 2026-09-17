@@ -62,7 +62,7 @@ Nguyên tắc 6 là quyết định có chủ ý: chi phí đòi lại tiền �
 2. Liệt kê mọi đề xuất đã chấp nhận từ agent đó trong 30 ngày
 3. Đưa toàn bộ về trạng thái quarantine
 4. Với đề xuất có người học đã đi qua: KHÔNG xoá kết quả của họ
-   → ghi danh của họ vẫn còn giá trị (Điều lệ §6)
+   → ghi danh của họ vẫn còn giá trị (ghi danh là bất biến — 16-governance.md)
 5. Điều tra: prompt? mô hình? nguồn đầu vào? bị chiếm?
 6. Sửa và chạy thử lại 2 tuần trước khi bật lại
 7. Kiểm: vì sao redteam không bắt được? bổ sung ca kiểm thử
