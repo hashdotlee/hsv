@@ -84,7 +84,7 @@ Khối lượng lớn nhất trong hệ thống.
 | Lưu | Kho đối tượng, con trỏ trong CSDL |
 | Hạn lưu | 2 năm sau khi ngưỡng đóng, rồi hỏi người học |
 | Truy cập | Người học (của mình) · gác cổng đang chấm · hội đồng kháng nghị |
-| Agent | **Không bao giờ** (INV-08) — kể cả `scribe` cũng chỉ đọc bản sao đã lọc |
+| Agent | **Không ghi, không đọc vết gốc** (INV-08). Riêng `scribe` đọc **bản sao đã lọc** qua Agent Gateway để chạy tiền thẩm |
 
 Lọc tại nguồn: biến môi trường, token, khoá, đường dẫn chứa tên thật bị loại trước khi vết rời máy.
 

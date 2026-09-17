@@ -58,7 +58,7 @@ Ký hiệu: 🔴 có thể kết thúc dự án · 🟠 nghiêm trọng · 🟡 
 ## 🟠 R9 · Hệ thống thành cult độc hại
 
 **Dấu hiệu:** người học cảm thấy tội lỗi khi nghỉ; ngôn ngữ nội bộ loại trừ; người rời đi bị coi là phản bội.
-**Chặn:** Điều lệ §1–5 · ngủ đông không phạt · không chuỗi ngày · không xếp hạng · rời đi không ma sát · quyền của người sáng lập bị giới hạn · kháng nghị bắt buộc.
+**Chặn:** Điều lệ §1–6 · ngủ đông không phạt · không chuỗi ngày · không xếp hạng · rời đi không ma sát · quyền của người sáng lập bị giới hạn · kháng nghị bắt buộc.
 **Kiểm định:** một người học nghỉ 3 tháng rồi quay lại — họ có cảm thấy bị phán xét không? Hỏi thật, không đoán.
 
 ## 🟠 R10 · Chiếm dụng và xúc phạm văn hoá

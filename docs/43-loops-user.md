@@ -141,7 +141,7 @@ Bốn điều kiện, không tắt được điều nào:
 4. hội đồng đỉnh chấp nhận
 ```
 
-Không ai cạnh tranh với ai. Mọi con đường đều dẫn tới đó. **Không có bảng xếp hạng toàn cục** — Điều lệ §5.
+Không ai cạnh tranh với ai. Mọi con đường đều dẫn tới đó. **Không có bảng xếp hạng toàn cục** — Điều lệ §3.
 
 ---
 

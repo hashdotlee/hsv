@@ -100,7 +100,7 @@ Dễ dàng hơn với người mới (0.7–0.8) và khó dần khi người h�
 
 Một đích chung cho mọi con đường. Điều kiện:
 
-1. Mức thành thạo tối thiểu trên **cả sáu trục** (không được bỏ trục nào)
+1. Mức thành thạo tối thiểu trên **cả sáu trục** (không được bỏ trục nào) — ngưỡng số hiện tại `mastery ≥ 0,7`, xem [`43-loops-user.md`](43-loops-user.md) § U5
 2. Ít nhất một ngưỡng `REAL_STAKES` đã qua
 3. **Đã đưa ít nhất 3 người qua một ngưỡng** (trục TRUYỀN — Điều lệ §17)
 4. Được hội đồng những người đã lên đỉnh chấp nhận

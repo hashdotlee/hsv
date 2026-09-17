@@ -43,7 +43,7 @@ type TraceEvent =
 
 1. Ghi thêm, không sửa. Không ai — kể cả admin — sửa được.
 2. Ký tại nguồn. Vết không có chữ ký hợp lệ thì không dùng để phán quyết.
-3. Người học **thấy được vết của chính mình** và xoá được sau khi ngưỡng đóng.
+3. Người học **thấy được vết của chính mình** và xoá được sau khi ngưỡng đóng. Xoá là xoá nội dung vết trong kho riêng; sự kiện và ghi danh vẫn còn, chuỗi băm vẫn nguyên ([`26-data-and-storage.md`](26-data-and-storage.md) § Xuất và xoá). Vết còn đang dùng cho một kháng nghị chưa xong thì chưa xoá được.
 4. Nội dung nhạy cảm (biến môi trường, token) bị lọc tại nguồn.
 5. Agent không bao giờ ghi vào vết (INV-08).
 
